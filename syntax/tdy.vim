@@ -1,7 +1,6 @@
 " Vim syntax file
-" Language: Thidy
+" Language:   Thidy
 " Maintainer: Edvard Thörnros
-" Latest Revision: 10 Jan 2021
 
 if exists("b:current_syntax") && b:current_syntax == "tdy"
     finish
