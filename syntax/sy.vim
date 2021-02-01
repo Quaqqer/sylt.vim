@@ -1,11 +1,11 @@
 " Vim syntax file
-" Language:   Thidy
+" Language:   Sylt
 " Maintainer: Edvard Thörnros
 
-if exists("b:current_syntax") && b:current_syntax == "tdy"
+if exists("b:current_syntax") && b:current_syntax == "sy"
     finish
 endif
-let b:current_syntax = "tdy"
+let b:current_syntax = "sy"
 
 syn keyword tdyKeyword if for fn blob print yield ret 
 

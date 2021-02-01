@@ -1,12 +1,12 @@
 " Vim syntax file
-" Language:   Thidy
+" Language:   Sylt
 " Maintainer: Edvard Thörnros
 
-autocmd BufNewFile,BufRead *.tdy set filetype=tdy
+autocmd BufNewFile,BufRead *.sy set filetype=sy
 
 function! s:DetectTdy()
-    if getline(1) =~ '^#!.*\<tdy\>'
-        set filetype=tdy
+    if getline(1) =~ '^#!.*\<sy\>'
+        set filetype=sy
     endif
 endfunction
 
