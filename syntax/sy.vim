@@ -2,32 +2,46 @@
 " Language:   Sylt
 " Maintainer: Edvard Thörnros
 
+"
+" Shamelessly stealen from moon.vim
+"
+
 if exists("b:current_syntax") && b:current_syntax == "sy"
     finish
 endif
 let b:current_syntax = "sy"
 
-syn keyword tdyKeyword if for fn blob print yield ret 
+syn keyword syltKeyword if for fn blob print yield ret 
 
-syn keyword tdyBool true false
+syn keyword syltBool true false
 
-syn match tdyNumber '\s\d\d*'
-syn match tdyFloatA '\s\d\+\.\d*'
-syn match tdyFloatB '\s\.\d\d*'
+syn match syltNumber /\i\@<![-+]\?\d\+\%([eE][+-]\?\d\+\)\?/ display
+syn match syltFloat /\i\@<![-+]\?\d*\.\@<!\.\d\+\%([eE][+-]\?\d\+\)\?/ display
 
-syn region tdyBlock start="{" end="}" fold transparent
-syn region tdyString start='"' end='"'
+syn region syltBlock start="{" end="}" fold transparent
+syn region syltString start='"' end='"'
 
-syn keyword tdyTodo contained TODO FIXME XXX NOTE
-syn match tdyComment "//.*$" contains=tdyTodo
+syn keyword syltTodo contained TODO FIXME XXX NOTE
+syn match syltComment "//.*$" contains=syltTodo
 
 
-hi def link tdyTodo        Todo
-hi def link tdyComment     Comment
-hi def link tdyKeyword     Type
+hi def link syltTodo        Todo
+hi def link syltComment     Comment
+hi def link syltKeyword     Type
 
-hi def link tdyBool        Constant
-hi def link tdyString      Constant
-hi def link tdyNumber      Constant
-hi def link tdyFloatA      Constant
-hi def link tdyFloatB      Constant
+hi def link syltBool        Constant
+hi def link syltString      Constant
+hi def link syltNumber      Constant
+hi def link syltFloat       Constant
+
+" An error for trailing whitespace, as long as the line isn't just whitespace
+if !exists("sylt_no_trailing_space_error")
+  syn match syltSpaceError /\S\@<=\s\+$/ display
+  hi def link syltSpaceError Error
+endif
+
+" An error for trailing semicolons, for help transitioning from JavaScript
+if !exists("sylt_no_trailing_semicolon_error")
+  syn match syltSemicolonError /;$/ display
+  hi def link syltSemicolonError Error
+endif
