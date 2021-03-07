@@ -4,10 +4,10 @@
 
 autocmd BufNewFile,BufRead *.sy set filetype=sy
 
-function! s:DetectTdy()
+function! s:DetectSy()
     if getline(1) =~ '^#!.*\<sy\>'
         set filetype=sy
     endif
 endfunction
 
-autocmd BufNewFile,BufRead * call s:DetectTdy()
+autocmd BufNewFile,BufRead * call s:DetectSy()
