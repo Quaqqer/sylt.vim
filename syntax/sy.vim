@@ -11,7 +11,7 @@ if exists("b:current_syntax") && b:current_syntax == "sy"
 endif
 let b:current_syntax = "sy"
 
-syn keyword syltKeyword if else for fn blob print yield ret 
+syn keyword syltKeyword if else for in fn blob print yield ret use
 
 syn keyword syltBool true false
 
