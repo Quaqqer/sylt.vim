@@ -12,10 +12,10 @@ if exists("*GetSyltIndent")
     finish
 endif
 
-let s:INDENT_AFTER_BRACE = '[^{]*{[^}]*'
-let s:OUTDENT_AFTER_BRACE = '[^}]*}[^{]*'
+let s:INDENT_AFTER_BRACE = '{'
+let s:OUTDENT_AFTER_BRACE = '}'
 
-func! s:GetPrevNonCodeLineNum(line_num)
+func! s:GetPrevCodeLineNum(line_num)
     let SKIP_LINES = '^\s*//'
     let nline = a:line_num
     while nline > 0
@@ -24,9 +24,10 @@ func! s:GetPrevNonCodeLineNum(line_num)
             break
         endif
     endwhile
+    return nline
 endfunc
 
-func! GetSyltIndent(curlinenum)
+func! GetSyltIndent(line_num)
     if a:line_num == 0
         return 0
     endif
@@ -37,11 +38,14 @@ func! GetSyltIndent(curlinenum)
     let prev_codeline = getline(prev_codeline_num)
     let prev_indent = indent(prev_codeline_num)
 
-    if prevline =~ s:INDENT_AFTER_BRACE
+    echomsg this_line
+    echomsg prev_codeline
+
+    if prev_codeline =~ s:INDENT_AFTER_BRACE
         return prev_indent + &shiftwidth
     endif
 
-    if prevline =~ s:OUTDENT_AFTER_BRACE
+    if prev_codeline =~ s:OUTDENT_AFTER_BRACE
         return prev_indent - &shiftwidth
     endif
 
