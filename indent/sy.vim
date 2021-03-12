@@ -40,20 +40,25 @@ func! GetSyltIndent(line_num)
     let prev_indent = indent(prev_codeline_num)
 
     if this_line =~ s:COMMENT
-        return prev_indent
+        return -1
     endif
 
-    if this_line =~ s:OUTDENT_AFTER_BRACE
-        return prev_indent - &shiftwidth
-    endif
+    let delta = 0
+    for c in split(prev_codeline, '\zs')
+        if c ==# "{"
+            let delta += &shiftwidth
+        endif
+        if c ==# "}"
+            let delta -= &shiftwidth
+        endif
+    endfor
 
-    if prev_codeline =~ s:SKIP_OPEN_CLOSE_BRACE
-        return prev_indent
-    endif
+    for c in split(this_line, '\zs')
+        if c ==# "}"
+            let delta -= &shiftwidth
+        endif
+    endfor
+    echom delta
 
-    if prev_codeline =~ s:INDENT_AFTER_BRACE
-        return prev_indent + &shiftwidth
-    endif
-
-    return prev_indent
+    return prev_indent + delta
 endfunc
