@@ -25,14 +25,30 @@ syn keyword syltTodo contained TODO FIXME XXX NOTE
 syn match syltComment "//.*$" contains=syltTodo
 
 
-hi def link syltTodo        Todo
-hi def link syltComment     Comment
-hi def link syltKeyword     Type
+hi link syltTodo        Todo
+hi link syltComment     Comment
+hi link syltKeyword     Keyword
 
-hi def link syltBool        Constant
-hi def link syltString      Constant
-hi def link syltNumber      Constant
-hi def link syltFloat       Constant
+hi link syltBool        Boolean
+hi link syltString      String
+hi link syltNumber      Number
+hi link syltFloat       Float
+
+syn match syltOp "\v\*"
+syn match syltOp "\v/"
+syn match syltOp "\v\+"
+syn match syltOp "\v-"
+syn match syltOp "\v!"
+syn match syltOp "\v\&\&"
+syn match syltOp "\v\|\|"
+syn match syltOp "\v\*\="
+syn match syltOp "\v/\="
+syn match syltOp "\v\+\="
+syn match syltOp "\v-\="
+syn match syltOp "\v\="
+syn match syltOp "\v:"
+
+hi link syltOp       Operator
 
 " An error for trailing whitespace, as long as the line isn't just whitespace
 if !exists("sylt_no_trailing_space_error")
