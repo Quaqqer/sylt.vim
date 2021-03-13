@@ -22,11 +22,9 @@ syn region syltBlock start="{" end="}" fold transparent
 syn region syltString start='"' end='"'
 
 syn keyword syltTodo contained TODO FIXME XXX NOTE
-syn match syltComment "//.*$" contains=syltTodo
-
-
 hi link syltTodo        Todo
-hi link syltComment     Comment
+
+
 hi link syltKeyword     Keyword
 
 hi link syltBool        Boolean
@@ -46,9 +44,11 @@ syn match syltOp "\v/\="
 syn match syltOp "\v\+\="
 syn match syltOp "\v-\="
 syn match syltOp "\v\="
-syn match syltOp "\v:"
 
 hi link syltOp       Operator
+
+syn match syltComment "//.*$" contains=syltTodo
+hi link syltComment     Comment
 
 " An error for trailing whitespace, as long as the line isn't just whitespace
 if !exists("sylt_no_trailing_space_error")
