@@ -43,22 +43,24 @@ func! GetSyltIndent(line_num)
         return -1
     endif
 
+    if prev_codeline =~ '^\s*[\]\}\)]'
+        return prev_indent
+    endif
+
     let delta = 0
+
     for c in split(prev_codeline, '\zs')
-        if c ==# "{"
+        if c ==# "{" || c ==# "(" || c ==# "["
             let delta += &shiftwidth
         endif
-        if c ==# "}"
+        if c ==# "}" || c ==# ")" || c ==# "]"
             let delta -= &shiftwidth
         endif
     endfor
 
-    for c in split(this_line, '\zs')
-        if c ==# "}"
-            let delta -= &shiftwidth
-        endif
-    endfor
-    echom delta
+    if this_line =~ '^\s*[\]\}\)]'
+        return prev_indent - &shiftwidth
+    endif
 
     return prev_indent + delta
 endfunc
