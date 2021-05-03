@@ -3,7 +3,7 @@
 " Maintainer: Edvard Thörnros
 
 "
-" Shamelessly stealen from moon.vim
+" Shamelessly stolen from moon.vim
 "
 
 if exists("b:current_syntax") && b:current_syntax == "sy"
@@ -11,9 +11,13 @@ if exists("b:current_syntax") && b:current_syntax == "sy"
 endif
 let b:current_syntax = "sy"
 
-syn keyword syltKeyword if else for in fn blob print yield ret use
+syn keyword syltKeyword if else for break continue in blob print yield ret
+syn keyword syltKeyword fn use
 
-syn keyword syltBool true false
+syn match syltKeyword /->/
+syn match syltKeyword /::/
+
+syn keyword syltBool true false nil
 
 syn match syltNumber /\i\@<![-+]\?\d\+\%([eE][+-]\?\d\+\)\?/ display
 syn match syltFloat /\i\@<![-+]\?\d*\.\@<!\.\d\+\%([eE][+-]\?\d\+\)\?/ display
@@ -32,18 +36,31 @@ hi link syltString      String
 hi link syltNumber      Number
 hi link syltFloat       Float
 
-syn match syltOp "\v\*"
-syn match syltOp "\v/"
-syn match syltOp "\v\+"
-syn match syltOp "\v-"
-syn match syltOp "\v!"
-syn match syltOp "\v\&\&"
-syn match syltOp "\v\|\|"
-syn match syltOp "\v\*\="
-syn match syltOp "\v/\="
-syn match syltOp "\v\+\="
-syn match syltOp "\v-\="
-syn match syltOp "\v\="
+syn match syltOp /\//
+syn match syltOp /++/
+syn match syltOp /--/
+syn match syltOp /&&/
+syn match syltOp /||/
+syn match syltOp /*=/
+syn match syltOp /\/=/
+syn match syltOp /+=/
+syn match syltOp /-=/
+syn match syltOp /:=/
+syn match syltOp /!=/
+syn match syltOp /==/
+syn match syltOp /<=/
+syn match syltOp />=/
+
+syn match syltOp /!/
+syn match syltOp /</
+syn match syltOp />/
+syn match syltOp /=/
+syn match syltOp /+/
+syn match syltOp /-/
+syn match syltOp /*/
+
+syn match syltOp /|/
+syn match syltOp /?/
 
 hi link syltOp       Operator
 
@@ -54,6 +71,13 @@ hi link syltComment     Comment
 if !exists("sylt_no_trailing_space_error")
   syn match syltSpaceError /\S\@<=\s\+$/ display
   hi def link syltSpaceError Error
+endif
+
+if !exists("sylt_no_git_conflict_error")
+  syn match syltGitError /<<<<<<</ display
+  syn match syltGitError /=======/ display
+  syn match syltGitError />>>>>>>/ display
+  hi def link syltGitError Error
 endif
 
 " An error for trailing semicolons, for help transitioning from JavaScript
