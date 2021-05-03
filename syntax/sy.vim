@@ -11,11 +11,18 @@ if exists("b:current_syntax") && b:current_syntax == "sy"
 endif
 let b:current_syntax = "sy"
 
+syn keyword syltType bool int float void str
+
+if !exists("sylt_no_large_first_implies_type")
+    syn match syltType /[A-Z]\+[a-z]\+[A-Za-z]/
+endif
+
 syn keyword syltKeyword if else for break continue in blob print yield ret
 syn keyword syltKeyword fn use
 
 syn match syltKeyword /->/
 syn match syltKeyword /::/
+syn match syltKeyword /:/
 
 syn keyword syltBool true false nil
 
@@ -28,7 +35,7 @@ syn region syltString start='"' end='"'
 syn keyword syltTodo contained TODO FIXME XXX NOTE
 hi link syltTodo        Todo
 
-
+hi link syltType        Type
 hi link syltKeyword     Keyword
 
 hi link syltBool        Boolean
