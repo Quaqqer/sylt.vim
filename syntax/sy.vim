@@ -14,11 +14,11 @@ let b:current_syntax = "sy"
 syn keyword syltType bool int float void str
 
 if !exists("sylt_no_large_first_implies_type")
-    syn match syltType /[A-Z]\+[a-z]\+[A-Za-z]/
+    syn match syltType /[A-Z][A-Za-z]\*/
 endif
 
-syn keyword syltKeyword if else for break continue in blob print yield ret
-syn keyword syltKeyword fn use
+syn keyword syltKeyword if else loop break continue in blob print yield ret
+syn keyword syltKeyword fn use is
 
 syn match syltKeyword /->/
 syn match syltKeyword /::/
@@ -74,9 +74,9 @@ hi link syltOp       Operator
 syn match syltComment "//.*$" contains=syltTodo
 hi link syltComment     Comment
 
-" An error for trailing whitespace, as long as the line isn't just whitespace
+" An error for trailing whitespace
 if !exists("sylt_no_trailing_space_error")
-  syn match syltSpaceError /\S\@<=\s\+$/ display
+  syn match syltSpaceError /\s\+$/ display
   hi def link syltSpaceError Error
 endif
 
