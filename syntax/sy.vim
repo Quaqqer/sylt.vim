@@ -17,8 +17,8 @@ if !exists("sylt_no_large_first_implies_type")
     syn match syltType /[A-Z][A-Za-z]\*/
 endif
 
-syn keyword syltKeyword if else loop break continue in blob print yield ret
-syn keyword syltKeyword fn use is
+syn keyword syltKeyword if else loop break continue in blob yield ret
+syn keyword syltKeyword fn use is do end and or not
 
 syn match syltKeyword /->/
 syn match syltKeyword /::/
@@ -29,7 +29,7 @@ syn keyword syltBool true false nil
 syn match syltNumber /\i\@<![-+]\?\d\+\%([eE][+-]\?\d\+\)\?/ display
 syn match syltFloat /\i\@<![-+]\?\d*\.\@<!\.\d\+\%([eE][+-]\?\d\+\)\?/ display
 
-syn region syltBlock start="{" end="}" fold transparent
+syn region syltBlock start="\<do\>" end="\<end\>" fold transparent
 syn region syltString start='"' end='"'
 
 syn keyword syltTodo contained TODO FIXME XXX NOTE

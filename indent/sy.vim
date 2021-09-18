@@ -8,14 +8,17 @@ let b:did_indent = 1
 
 setlocal indentexpr=GetSyltIndent(v:lnum)
 
+" Enable automatic indent when writing 'end'
+setlocal indentkeys+=0=end
+
+" Indent automatically when writing
+setlocal autoindent
+
 if exists("*GetSyltIndent")
     finish
 endif
 
 let s:COMMENT = '^\s*//'
-let s:INDENT_AFTER_BRACE = '{'
-let s:OUTDENT_AFTER_BRACE = '^[^{]*}'
-let s:SKIP_OPEN_CLOSE_BRACE = '{.*}'
 
 func! s:GetPrevCodeLineNum(line_num)
     let nline = a:line_num
@@ -43,24 +46,15 @@ func! GetSyltIndent(line_num)
         return -1
     endif
 
-    if prev_codeline =~ '^\s*[\]\}\)]'
-        return prev_indent
+    let ident = prev_indent
+
+    if match(prev_codeline, '\(\<do\>\|[\|{\|(\)$') != -1
+        let ident = ident + shiftwidth()
     endif
 
-    let delta = 0
-
-    for c in split(prev_codeline, '\zs')
-        if c ==# "{" || c ==# "(" || c ==# "["
-            let delta += &shiftwidth
-        endif
-        if c ==# "}" || c ==# ")" || c ==# "]"
-            let delta -= &shiftwidth
-        endif
-    endfor
-
-    if this_line =~ '^\s*[\]\}\)]'
-        return prev_indent - &shiftwidth
+    if match(this_line, '^\s*\(\<end\>\|\<else\>\|]\|}\|)\)$') != -1
+        let ident = ident - shiftwidth()
     endif
 
-    return prev_indent + delta
+    return ident
 endfunc
