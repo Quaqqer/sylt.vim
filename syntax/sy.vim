@@ -46,8 +46,6 @@ hi link syltFloat       Float
 syn match syltOp /\//
 syn match syltOp /++/
 syn match syltOp /--/
-syn match syltOp /&&/
-syn match syltOp /||/
 syn match syltOp /*=/
 syn match syltOp /\/=/
 syn match syltOp /+=/
@@ -58,13 +56,13 @@ syn match syltOp /==/
 syn match syltOp /<=/
 syn match syltOp />=/
 
-syn match syltOp /!/
 syn match syltOp /</
 syn match syltOp />/
 syn match syltOp /=/
 syn match syltOp /+/
 syn match syltOp /-/
 syn match syltOp /*/
+syn match syltOp /'/
 
 syn match syltOp /|/
 syn match syltOp /?/
