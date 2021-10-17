@@ -44,6 +44,9 @@ hi link syltString      String
 hi link syltNumber      Number
 hi link syltFloat       Float
 
+syn keyword syltSelf self
+hi link syltSelf        Identifier
+
 syn match syltOp /\//
 syn match syltOp /++/
 syn match syltOp /--/
