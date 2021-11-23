@@ -19,6 +19,7 @@ endif
 
 syn keyword syltKeyword if else loop break continue in blob yield ret
 syn keyword syltKeyword fn use is do end and or not as external from
+syn keyword syltKeyword enum case
 
 syn match syltKeyword /->/
 syn match syltKeyword /::/
@@ -30,7 +31,7 @@ syn match syltNumber /\i\@<![-+]\?\d\+\%([eE][+-]\?\d\+\)\?/ display
 syn match syltFloat /\i\@<![-+]\?\d*\.\@<!\.\d\+\%([eE][+-]\?\d\+\)\?/ display
 syn match syltFloat /\i\@<![-+]\?\d+\.\@<!\.\d\*\%([eE][+-]\?\d\+\)\?/ display
 
-syn region syltBlock start="\<do\>" end="\<end\>" fold transparent
+syn region syltBlock start="\<\%(do\|enum\)\>" end="\<end\>" fold transparent
 syn region syltString start='"' end='"'
 
 syn keyword syltTodo contained TODO FIXME XXX NOTE
