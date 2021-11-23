@@ -1,7 +1,6 @@
 " Sylt filetype plugin file
 " Language: Sylt 0.2.0+
-" Maintainer:  Emanuel S <emanuel@empa.xyz>
-" Last change: 20211 Nov 22
+" Last change: 2021 Nov 22
 
 " Don't load multiple filetypes
 if exists("b:did_ftplugin")
