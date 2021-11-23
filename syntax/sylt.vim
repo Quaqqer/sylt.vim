@@ -79,7 +79,7 @@ hi link syltComment     Comment
 
 " An error for trailing whitespace
 if !exists("sylt_no_trailing_space_error")
-  syn match syltSpaceError /\s\+$/ display
+  syn match syltSpaceError /\s\+\(\%#\)\@!$/ display
   hi def link syltSpaceError Error
 endif
 
