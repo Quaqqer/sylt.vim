@@ -74,7 +74,7 @@ syn match syltOp /?/
 
 hi link syltOp       Operator
 
-syn match syltComment "//.*$" contains=syltTodo
+syn match syltComment "//.*$" contains=syltTodo,@Spell
 hi link syltComment     Comment
 
 " An error for trailing whitespace
