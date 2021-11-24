@@ -19,6 +19,7 @@ endif
 
 syn keyword syltKeyword if else loop break continue in blob yield ret
 syn keyword syltKeyword fn use is do end and or not as external from
+syn keyword syltKeyword enum case
 
 syn match syltKeyword /->/
 syn match syltKeyword /::/
@@ -30,7 +31,7 @@ syn match syltNumber /\i\@<![-+]\?\d\+\%([eE][+-]\?\d\+\)\?/ display
 syn match syltFloat /\i\@<![-+]\?\d*\.\@<!\.\d\+\%([eE][+-]\?\d\+\)\?/ display
 syn match syltFloat /\i\@<![-+]\?\d+\.\@<!\.\d\*\%([eE][+-]\?\d\+\)\?/ display
 
-syn region syltBlock start="\<do\>" end="\<end\>" fold transparent
+syn region syltBlock start="\<\%(do\|enum\)\>" end="\<end\>" fold transparent
 syn region syltString start='"' end='"'
 
 syn keyword syltTodo contained TODO FIXME XXX NOTE
@@ -73,12 +74,12 @@ syn match syltOp /?/
 
 hi link syltOp       Operator
 
-syn match syltComment "//.*$" contains=syltTodo
+syn match syltComment "//.*$" contains=syltTodo,@Spell
 hi link syltComment     Comment
 
 " An error for trailing whitespace
 if !exists("sylt_no_trailing_space_error")
-  syn match syltSpaceError /\s\+$/ display
+  syn match syltSpaceError /\s\+\(\%#\)\@!$/ display
   hi def link syltSpaceError Error
 endif
 
