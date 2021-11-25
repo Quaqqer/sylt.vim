@@ -27,8 +27,8 @@ syn match syltKeyword /:/
 syn keyword syltBool true false nil
 
 syn match syltNumber /\i\@<![-+]\?\d\+\%([eE][+-]\?\d\+\)\?/ display
-syn match syltFloat /\i\@<![-+]\?\d+\.\@<!\.\d\*\%([eE][+-]\?\d\*\)\?/ display
-syn match syltFloat /\i\@<![-+]\?\d*\.\@<!\.\d\*\%([eE][+-]\?\d\+\)\?/ display
+syn match syltFloatPre /\i\@<![-+]\?\d+\.\@<!\.\d\*\%([eE][+-]\?\d\*\)\?/ display
+syn match syltFloatPost /\i\@<![-+]\?\d*\.\@<!\.\d\*\%([eE][+-]\?\d\+\)\?/ display
 
 syn region syltBlock start="\<do\>" end="\<end\>" fold transparent
 syn region syltString start='"' end='"'
@@ -42,7 +42,8 @@ hi link syltKeyword     Keyword
 hi link syltBool        Boolean
 hi link syltString      String
 hi link syltNumber      Number
-hi link syltFloat       Float
+hi link syltFloatPre    Float
+hi link syltFloatPost   Float
 
 syn keyword syltSelf self
 hi link syltSelf        Identifier
