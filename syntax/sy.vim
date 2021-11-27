@@ -23,9 +23,9 @@ syn match syltKeyword /->/
 syn match syltKeyword /::/
 syn match syltKeyword /:/
 
-syn match syltNumber /\i\@<![-+]\?\d\+\%([eE][+-]\?\d\+\)\?/ display
 syn match syltFloat /\i\@<![-+]\?\d*\.\@<!\.\d\+\%([eE][+-]\?\d\+\)\?/ display
 syn match syltFloat /\i\@<![-+]\?\d+\.\@<!\.\d\*\%([eE][+-]\?\d\+\)\?/ display
+syn match syltNumber /\i\@<![-+]\?\d\+\%([eE][+-]\?\d\+\)\?/ display
 
 syn region syltBlock start="\<do\>" end="\<end\>" fold transparent
 syn region syltString start='"' end='"'
