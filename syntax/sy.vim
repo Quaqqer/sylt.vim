@@ -1,7 +1,6 @@
 " Vim syntax file
 " Language:   Sylt
 " Maintainer: Edvard Thörnros
-
 "
 " Shamelessly stolen from moon.vim
 "
@@ -17,17 +16,16 @@ if !exists("sylt_no_large_first_implies_type")
     syn match syltType /[A-Z][A-Za-z]\*/
 endif
 
-syn keyword syltKeyword if else loop break continue in blob re enumt
+syn keyword syltKeyword if else loop break continue in blob ret enumt
 syn keyword syltKeyword fn use is do end and or not as external from case
 
 syn match syltKeyword /->/
 syn match syltKeyword /::/
 syn match syltKeyword /:/
 
-syn keyword syltBool true false nil
-
-syn match syltFloatPre /\i\@<![-+]\?\d+\.\@<!\.\d\*\%([eE][+-]\?\d\*\)\?/ display
-syn match syltFloatPost /\i\@<![-+]\?\d*\.\@<!\.\d\*\%([eE][+-]\?\d\+\)\?/ display
+syn match syltNumber /\i\@<![-+]\?\d\+\%([eE][+-]\?\d\+\)\?/ display
+syn match syltFloat /\i\@<![-+]\?\d*\.\@<!\.\d\+\%([eE][+-]\?\d\+\)\?/ display
+syn match syltFloat /\i\@<![-+]\?\d+\.\@<!\.\d\*\%([eE][+-]\?\d\+\)\?/ display
 
 syn region syltBlock start="\<do\>" end="\<end\>" fold transparent
 syn region syltString start='"' end='"'
@@ -40,8 +38,8 @@ hi link syltKeyword     Keyword
 
 hi link syltBool        Boolean
 hi link syltString      String
-hi link syltFloatPre    Number
-hi link syltFloatPost   Number
+hi link syltNumber      Number
+hi link syltFloat       Float
 
 syn keyword syltSelf self
 hi link syltSelf        Identifier
