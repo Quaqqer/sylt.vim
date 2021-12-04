@@ -17,5 +17,7 @@ if exists("loaded_matchit")
     let b:match_skip = 's:syltComment\|syltString'
 endif " exists("loaded_matchit")
 
+setlocal commentstring=//\ %s
+
 let &cpo = s:cpo_save
 unlet s:cpo_save
