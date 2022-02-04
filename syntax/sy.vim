@@ -16,8 +16,8 @@ if !exists("sylt_no_large_first_implies_type")
     syn match syltType /[A-Z][A-Za-z]\*/
 endif
 
-syn keyword syltKeyword if else loop break continue in blob yield ret
-                      \ fn use is do end and or not as external from
+syn keyword syltKeyword if else loop break continue in blob ret enum
+                      \ fn use is do end and or not as external from case
 
 syn match syltKeyword /->/
 syn match syltKeyword /::/
