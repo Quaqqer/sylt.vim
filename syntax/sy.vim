@@ -1,7 +1,6 @@
 " Vim syntax file
 " Language:   Sylt
 " Maintainer: Edvard Thörnros
-
 "
 " Shamelessly stolen from moon.vim
 "
@@ -18,18 +17,15 @@ if !exists("sylt_no_large_first_implies_type")
 endif
 
 syn keyword syltKeyword if else loop break continue in blob yield ret
-syn keyword syltKeyword fn use is do end and or not as external from
-syn keyword syltKeyword enum case
+                      \ fn use is do end and or not as external from
 
 syn match syltKeyword /->/
 syn match syltKeyword /::/
 syn match syltKeyword /:/
 
-syn keyword syltBool true false nil
-
-syn match syltNumber /\i\@<![-+]\?\d\+\%([eE][+-]\?\d\+\)\?/ display
 syn match syltFloat /\i\@<![-+]\?\d*\.\@<!\.\d\+\%([eE][+-]\?\d\+\)\?/ display
 syn match syltFloat /\i\@<![-+]\?\d+\.\@<!\.\d\*\%([eE][+-]\?\d\+\)\?/ display
+syn match syltNumber /\i\@<![-+]\?\d\+\%([eE][+-]\?\d\+\)\?/ display
 
 syn region syltBlock start="\<\%(do\|enum\)\>" end="\<end\>" fold transparent
 syn region syltString start='"' end='"'
